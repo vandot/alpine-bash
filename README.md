@@ -8,7 +8,7 @@ contains __only__ [Bash](https://www.gnu.org/software/bash/) (Bourne Again SHell
 
 ## Example usage
 
-Bash prompt wait your comand 
+Bash prompt wait your command 
 ```bash
 $ docker run -ti --rm vandot/alpine-bash
 ```
