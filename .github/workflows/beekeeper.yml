@@ -1,0 +1,14 @@
+name: beekeeper
+
+on:
+  check_run:
+    types: [created, rerequested, requested_action]
+
+jobs:
+  myEvent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - run: echo ${{ github.sha }}
