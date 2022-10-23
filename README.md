@@ -11,10 +11,12 @@ contains __only__ latest [Bash](https://www.gnu.org/software/bash/) (Bourne Agai
 Bash prompt wait your command 
 ```bash
 $ docker run -ti --rm vandot/alpine-bash
+$ docker run -ti --rm quay.io/vandot/alpine-bash
 ```
 
 Or 
 
 ```bash
 $ docker run --rm vandot/alpine-bash bash -c 'echo "Hello World"'
+$ docker run --rm quay.io/vandot/alpine-bash bash -c 'echo "Hello World"'
 ```
