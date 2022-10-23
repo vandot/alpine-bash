@@ -1,0 +1,25 @@
+name: cron
+
+on:
+ schedule:
+ - cron: 0 1 * * *
+
+jobs:
+  infra-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check latest alpine image
+        id: check
+        run: |
+          read -r tag date < <(curl -s https://registry.hub.docker.com/v2/repositories/library/alpine/tags | jq -r '.results[] | "\(.name) \(.tag_last_pushed)"' | sort -n | tail -1)
+          date_u=$(date --date=$date +%s); now=$(date --utc +%s); diff=$((now-date_u))
+          if [[ $diff -gt 86400 ]]
+            sed -i "s/alpine:.*/alpine:$tag/" Dockerfile
+            echo "tag=${tag}" >> $GITHUB_OUTPUT
+            echo "run=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Create Pull Request
+        if: ${{ steps.check.outputs.run }}
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: Bump Alpine to ${{ steps.check.outputs.run }}
