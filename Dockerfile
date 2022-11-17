@@ -1,4 +1,4 @@
-FROM alpine:3.16.2
+FROM alpine:3.17.0_rc1
 
 LABEL org.opencontainers.image.authors="vandot"
 
