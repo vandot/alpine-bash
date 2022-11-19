@@ -26,4 +26,4 @@ jobs:
         if: ${{ steps.check.outputs.run }}
         uses: peter-evans/create-pull-request@v4
         with:
-          title: Bump Alpine to ${{ steps.check.outputs.run }}
+          title: Bump Alpine to ${{ steps.check.outputs.tag }}
